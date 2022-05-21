@@ -36,7 +36,7 @@ app.MapPost("/api/TodoItems", async (DataContext context, TodoItem todoItem) =>
 {
     context.TodoItems.Add(todoItem);
     await context.SaveChangesAsync();
-    return Results.Created($"/api/TodoItems/{todoItem.Id}",todoItem);
+    return Results.Ok(todoItem);
 });
 
 //Updating Todo Items

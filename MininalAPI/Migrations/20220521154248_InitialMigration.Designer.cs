@@ -12,27 +12,28 @@ using MininalAPI;
 namespace MininalAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220521081742_InitialMigration")]
+    [Migration("20220521154248_InitialMigration")]
     partial class InitialMigration
     {
-        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-preview.4.22229.2")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("MininalAPI.TodoItem", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<DateTimeOffset?>("DueAt")
-                        .HasColumnType("datetimeoffset");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("DueAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDone")
                         .HasColumnType("bit");
